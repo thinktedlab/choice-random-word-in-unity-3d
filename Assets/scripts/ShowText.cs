@@ -15,22 +15,22 @@ public class ShowText : MonoBehaviour
     public Button btnChangeWord;
     private static List<string> wordList;
 
-    void Start()
+    async void Start()
     {
         wordList = new List<string>();
-        
-        async_read_file();
 
-        choiceRandomWorld;
+        await ReadAndDisplayFilesAsync();
 
-        btnChangeWord.onClick.AddListener(choiceRandomWorld);
+        choiceRandomWord();
+
+        btnChangeWord.onClick.AddListener(choiceRandomWord);
     }
 
     void Update()
     {
     }
 
-    private void choiceRandomWorld()
+    private void choiceRandomWord()
     {
         if (wordList.Count > 0)
         {
@@ -41,13 +41,7 @@ public class ShowText : MonoBehaviour
         }
     }
 
-
-    static async Task async_read_file()
-    {
-        await ReadAndDisplayFilesAsync();
-    }
-
-    static async Task ReadAndDisplayFilesAsync()
+    async Task ReadAndDisplayFilesAsync()
     {
         String filename = Application.dataPath + "/resources/pt_BR_dic_1.txt";
 
@@ -57,7 +51,7 @@ public class ShowText : MonoBehaviour
             while ((line = sr.ReadLine()) != null)
             {
                 wordList.Add(line);
-                // Debug.Log(line);
+                Debug.Log(line);
             }
         }
     }
