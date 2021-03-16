@@ -43,7 +43,7 @@ public class ShowText : MonoBehaviour
             var split = syllable.word2syllables(wordList[index]);
             var splitString = string.Join("-", split.ToArray());
             // word.text = wordList[index];
-            word.text = splitString;
+            word.text = splitString.ToUpper();
             Debug.Log(splitString);
             wordList.RemoveAt(index);
         }
@@ -51,7 +51,7 @@ public class ShowText : MonoBehaviour
 
     void ReadAndDisplayFilesAsync()
     {
-        String filename = Application.dataPath + "/resources/pt_BR_dic_1.txt";
+        String filename = Application.dataPath + "/dicts/lista_palavras.txt";
 
         using (StreamReader sr = new StreamReader(filename))
         {
